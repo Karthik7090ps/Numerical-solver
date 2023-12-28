@@ -5,7 +5,7 @@ import json
 from pages.shrink_page import shrink_class
 from pages.menu_page import menu_class as menu_class
 
-with open("controls.json","r") as control_file:
+with open("/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json","r") as control_file:
   config = json.load(control_file)
 
 if config["theme"]==1:

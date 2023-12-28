@@ -7,7 +7,7 @@ from pages.subjects_page import subjects_class
 from pages.menu_page import menu_class as menu_class
 import json
 
-with open("/home/picchai/Documents/numerical_solver/toso/controls.json","r") as control_file:
+with open("/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json","r") as control_file:
   config = json.load(control_file)
 
 def main(page: Page):
@@ -47,7 +47,7 @@ def main(page: Page):
     )
     if page.route =="/":
       page.update()
-      time.sleep(3)
+      time.sleep(1)
       page.go("/dashboard")
 
 
