@@ -2,8 +2,9 @@ import flet as ft
 from flet import *
 import json
 from pages.restore_page import restore_class
+from pages.profile_page import profile_class
 
-with open("controls.json","r") as control_file:
+with open('/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json','r') as control_file:
   config = json.load(control_file)
 
 if config["theme"]==1:
@@ -29,42 +30,7 @@ class menu_class(ft.UserControl):
 
     def build(self):
 
-        def circle_func():
-            self.circle = Stack(
-                controls=[
-                    Container(
-                            gradient=SweepGradient(
-                                center=alignment.center,
-                                start_angle=0.0,
-                                end_angle=3,
-                                stops=[0.5,0.5],
-                            colors=['#00000000', PINK],
-                            ),
-                            width=100,
-                            height=100,
-                            border_radius=50,
-                            content=Row(alignment='center',
-                                controls=[
-                                    Container(padding=padding.all(5),
-                                    bgcolor=BG,
-                                    width=90,height=90,
-                                    border_radius=50,
-                                    content=Container(bgcolor=FG,
-                                        height=80,width=80,
-                                        border_radius=40,
-                                    content=CircleAvatar(opacity=0.8,
-                            foreground_image_url="https://assets.weforum.org/sf_account/image/rA_TF_tkRNKjxk_gzlr9UlBXMhuoPZNeRaRO7-ys_xw.jpg"
-                        )
-                                    )
-                                    )
-                                ],
-                            ),
-                        ),
-
-                ]
-            )
-        circle_func()
-
+        self.circle=profile_class(size=1.5)
 
         self.menu_page_data = Container(
             width=400,

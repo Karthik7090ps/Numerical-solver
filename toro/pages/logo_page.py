@@ -16,7 +16,7 @@ class logo_class(ft.UserControl):
     def logo(self):
 
         self.image =ft.Image(
-            src="/home/picchai/Documents/numerical_solver/toso/assets/images/logo.png",
+            src="/home/picchai/Documents/GItHub/Numerical-solver/toro/assets/images/logo.png",
             width=200,
             height=200,
             fit=ft.ImageFit.FILL,

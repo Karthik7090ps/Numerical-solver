@@ -4,6 +4,7 @@ import random
 import json
 from pages.shrink_page import shrink_class
 from pages.menu_page import menu_class as menu_class
+from pages.profile_page import profile_class
 
 with open("/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json","r") as control_file:
   config = json.load(control_file)
@@ -29,6 +30,7 @@ class dashboard_class(ft.UserControl):
         super().__init__()
 
     def build(self):
+        Page.padding=0
 
         subjects = Column(
             height=400,
@@ -97,6 +99,23 @@ class dashboard_class(ft.UserControl):
             )
             )
 
+        avathar=profile_class(size=0.6)
+
+        anchor = ft.SearchBar(
+            height=45,
+            width=230,
+                            view_elevation=2,
+                            divider_color=ft.colors.DEEP_PURPLE_ACCENT,
+                            bar_hint_text="Search Topics...",
+                            bar_bgcolor='#FFFFFFA6',
+                            view_hint_text="Choose a color from the suggestions...",
+
+                            controls=[
+                                ft.ListTile(title=ft.Text(f"Color {i}"), on_click=None, data=i)
+                                for i in range(10)
+                            ],
+                        )
+
         first_page_contents = Container(
             content=Column(
             controls=[
@@ -104,14 +123,28 @@ class dashboard_class(ft.UserControl):
                 controls=[
                     Container(
                     on_click=lambda e:shrink_class(page_menu=dashboard_page),
-                    content=Icon(
-                        icons.MENU,size=30,color=FWG)),
+                    content=Container(
+                        avathar,animate_size=30
+                    )),
+                    Container(padding=0,
+                        content=Column(
+                            controls=[
+                                Text(value="  ENGIFY",size=20,width=200,color='white',text_align=TextAlign.CENTER,
+                                     ),
+                                Text(value=" Input to output",size=15,width=200,color='white',text_align=TextAlign.CENTER,
+                                     ),
+                                anchor,
+                            ]
+                        ),
+                    ),
+
+                    
                     Row(
                     controls=[
                         Container(
                         on_click=lambda _: self.page.go('/dashboard/subjects'),
                         content=Icon(
-                        icons.NOTIFICATIONS,size=30,color=FWG))
+                        icons.NOTIFICATIONS,size=45,color=FWG))
                     ],
                     ),
                 ],
@@ -151,7 +184,7 @@ class dashboard_class(ft.UserControl):
                 animate=animation.Animation(600,AnimationCurve.DECELERATE),
                 animate_scale=animation.Animation(400, curve='decelerate'),
                 padding=padding.only(
-                top=50,left=20,
+                top=25,left=20,
                 right=20,bottom=5
                 ),
                 content=Column(

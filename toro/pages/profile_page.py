@@ -29,25 +29,25 @@ class profile_class(ft.UserControl):
         self.circle = Stack(
             controls=[
                 Container(
-                        # gradient=SweepGradient(
-                        #     center=alignment.center,
-                        #     start_angle=0.0,
-                        #     end_angle=3,
-                        #     stops=[0.5,0.5],
-                        # colors=['#00000000', PINK],
-                        # ),
+                        gradient=SweepGradient(
+                            center=alignment.center,
+                            start_angle=0.0,
+                            end_angle=0.0,
+                            stops=[0.5,0.5],
+                        colors=['#FFFFFFB1', PINK],
+                        ),
                         width=100*self.size,
                         height=100*self.size,
-                        border_radius=50*self.size,
+                        border_radius=60*self.size,
                         content=Row(alignment='center',
                             controls=[
                                 Container(padding=padding.all(5*self.size),
                                 bgcolor=BG,
                                 width=90*self.size,height=90*self.size,
                                 border_radius=50*self.size,
-                                content=Container(bgcolor=FG,
+                                content=Container(bgcolor='#FFFFFFB1',
                                     height=80*self.size,width=80*self.size,
-                                    border_radius=40*self.size,
+                                    border_radius=45*self.size,
                                 content=CircleAvatar(opacity=0.8,
                         foreground_image_url="https://assets.weforum.org/sf_account/image/rA_TF_tkRNKjxk_gzlr9UlBXMhuoPZNeRaRO7-ys_xw.jpg"
                     )
