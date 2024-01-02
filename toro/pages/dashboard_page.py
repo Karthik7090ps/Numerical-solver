@@ -39,7 +39,7 @@ class dashboard_class(ft.UserControl):
         subjects = Column(
             height=400*self.ws,
             scroll='auto',
-        ) 
+        )
         electronics_subjects = [
             "Analog Electronics",
             "Digital Signal Processing",
@@ -61,9 +61,9 @@ class dashboard_class(ft.UserControl):
                     bgcolor=FWG,
                     border_radius=25,
                     padding=padding.only(left=20, top=25),
-                    content=Container(
+                    content=Container(ElevatedButton(
                         Text(value=subject,color=XT,text_align=TextAlign.CENTER,size=10*self.ws)
-                    )
+                    ))
                 ),
             )
 
