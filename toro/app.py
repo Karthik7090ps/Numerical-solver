@@ -6,6 +6,7 @@ from pages.logo_page import logo_class
 from pages.subjects_page import subjects_class
 from pages.menu_page import menu_class as menu_class
 import json
+import pages.utility_page as screen_size
 
 with open("/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json","r") as control_file:
   config = json.load(control_file)

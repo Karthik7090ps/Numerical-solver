@@ -3,6 +3,7 @@ from flet import *
 import json
 from pages.shrink_page import shrink_class
 from pages.menu_page import menu_class as menu_class
+import pages.utility_page as screen_size
 
 with open("/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json", "r") as control_file:
     config = json.load(control_file)
@@ -26,6 +27,7 @@ elif config["theme"] == 2:
 class subjects_class(ft.UserControl):
     def __init__(self):
         super().__init__()
+        self.ws,self.hs,self.W,self.H=screen_size.utility_class.screen_size(self)
 
     def get_subjects(self):
         subjects_data = config.get("subjects_data", {})

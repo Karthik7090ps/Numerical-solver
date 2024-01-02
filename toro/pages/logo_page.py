@@ -1,17 +1,31 @@
 import flet as ft
 from flet import *
+import pages.utility_page as screen_size
+import json
 
-BG = '#1b1517'
-FG = '#0C1D36'
-FWG = '#E5F8F2CB'
-PINK = '#F9CC0B'
-TX ='#ffffff'
-XT ='#000000'
+with open("/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json","r") as control_file:
+  config = json.load(control_file)
+
+if config["theme"]==1:
+    BG      =config["BG"]
+    FG      =config["FG"]
+    FWG     =config["FWG"]
+    PINK    =config["HIGH"]
+    TX      =config["TX"]
+    XT      =config["XT"]
+elif config["theme"]==2:
+    BG = config["BG1"]
+    FG = config["FG1"]
+    FWG = config["FWG1"]
+    PINK = config["HIGH1"]
+    TX = config["TX1"]
+    XT = config["XT1"]
 
 class logo_class(ft.UserControl):
     def __init__(self):
         super().__init__()
         self.image =ft.Image
+        self.ws,self.hs,self.W,self.H=screen_size.utility_class.screen_size(self)
 
     def logo(self):
 
@@ -27,8 +41,8 @@ class logo_class(ft.UserControl):
     def build(self):
         self.logo()
         logo_page_data = Container(
-            width=400,
-            height=850,
+            width=self.W,
+            height=self.H,
             bgcolor=FG,
             border_radius=35,
             padding=padding.only(left=50,top=60,right=50),

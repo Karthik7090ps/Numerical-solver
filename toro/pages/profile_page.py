@@ -1,6 +1,9 @@
 import flet as ft
 from flet import *
 import json
+import pages.utility_page as screen_size
+
+
 with open('/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json','r') as control_file:
   config = json.load(control_file)
 
@@ -24,6 +27,7 @@ class profile_class(ft.UserControl):
         super().__init__()
         self.circle=None
         self.size=size
+        self.ws,self.hs,self.W,self.H=screen_size.utility_class.screen_size(self)
 
     def build(self):
         self.circle = Stack(

@@ -3,6 +3,7 @@ from flet import *
 import json
 from pages.restore_page import restore_class
 from pages.profile_page import profile_class
+import pages.utility_page as screen_size
 
 with open('/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json','r') as control_file:
   config = json.load(control_file)
@@ -27,14 +28,15 @@ class menu_class(ft.UserControl):
         super().__init__()
         self.menu_page_data=None
         self.page_data=page_data_for_menu
+        self.ws,self.hs,self.W,self.H=screen_size.utility_class.screen_size(self)
 
     def build(self):
 
         self.circle=profile_class(size=1.5)
 
         self.menu_page_data = Container(
-            width=400,
-            height=850,
+            width=self.W,
+            height=self.H,
             bgcolor=BG,
             border_radius=35,
             padding=padding.only(left=50,top=60,right=200),
@@ -84,8 +86,8 @@ class menu_class(ft.UserControl):
             )
         )
         self.container = Container(
-          width=400,
-          height=850,
+          width=self.W,
+          height=self.H,
           bgcolor=BG,
           border_radius=35,
           content=Stack(

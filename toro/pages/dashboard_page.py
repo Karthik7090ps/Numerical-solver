@@ -5,6 +5,8 @@ import json
 from pages.shrink_page import shrink_class
 from pages.menu_page import menu_class as menu_class
 from pages.profile_page import profile_class
+import pages.utility_page as screen_size
+
 
 with open("/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json","r") as control_file:
   config = json.load(control_file)
@@ -28,15 +30,16 @@ elif config["theme"]==2:
 class dashboard_class(ft.UserControl):
     def __init__(self):
         super().__init__()
+        self.ws,self.hs,self.W,self.H=screen_size.utility_class.screen_size(self)
+
 
     def build(self):
         Page.padding=0
 
         subjects = Column(
-            height=400,
+            height=400*self.ws,
             scroll='auto',
         ) 
-
         electronics_subjects = [
             "Analog Electronics",
             "Digital Signal Processing",
@@ -53,19 +56,19 @@ class dashboard_class(ft.UserControl):
         for subject in electronics_subjects:
             subjects.controls.append(
                 Container(
-                    height=70,
-                    width=400,
+                    height=70*self.hs,
+                    width=400*self.ws,
                     bgcolor=FWG,
                     border_radius=25,
                     padding=padding.only(left=20, top=25),
                     content=Container(
-                        Text(value=subject,color=XT)
+                        Text(value=subject,color=XT,text_align=TextAlign.CENTER,size=10*self.ws)
                     )
                 ),
             )
 
         categories_card = Row(
-            scroll='hidden'
+            scroll='auto'
         )
 
         categories = ['ECE','CSE','EEE','MECH']
@@ -76,16 +79,16 @@ class dashboard_class(ft.UserControl):
             Container(
                 border_radius=20,
                 bgcolor=FWG,
-                width=170,
-                height=110,
+                width=170   *self.ws,
+                height=110  *self.hs,
                 padding=15,
                 content=Column(
                 controls=[
                     Text(value=f'{k} Subjects', color=XT),
                     Text(category,color=XT),
                     Container(
-                    width=160,
-                    height=5,
+                    width=160*self.ws,
+                    height=5*self.hs,
                     bgcolor='white12',
                     border_radius=20,
                     padding=padding.only(right=i*30),
@@ -129,27 +132,26 @@ class dashboard_class(ft.UserControl):
                     Container(padding=0,
                         content=Column(
                             controls=[
-                                Text(value="  ENGIFY",size=20,width=200,color='white',text_align=TextAlign.CENTER,
+                                Text(value="  ENGIFY",size=20*self.ws,width=200*self.ws,color='white',text_align=TextAlign.CENTER,
                                      ),
-                                Text(value=" Input to output",size=15,width=200,color='white',text_align=TextAlign.CENTER,
+                                Text(value=" Input to output",size=15*self.ws,width=200*self.ws,color='white',text_align=TextAlign.CENTER,
                                      ),
                                 anchor,
                             ]
                         ),
                     ),
 
-                    
                     Row(
                     controls=[
                         Container(
                         on_click=lambda _: self.page.go('/dashboard/subjects'),
                         content=Icon(
-                        icons.NOTIFICATIONS,size=45,color=FWG))
+                        icons.NOTIFICATIONS,size=45*self.ws,color=FWG))
                     ],
                     ),
                 ],
                 ),
-                Container(height=20),
+                Container(height=20*self.hs),
                 Text(
                 value='What\'s up, Sundar!',color=TX
                 ),
@@ -157,16 +159,16 @@ class dashboard_class(ft.UserControl):
                 value='CATEGORIES',color=TX
                 ),
                 Container(
-                padding=padding.only(top=10,bottom=20,),
+                padding=padding.only(top=10*self.hs,bottom=20*self.hs,),
                 content=categories_card
                 ),
-                Container(height=5),
+                Container(height=5*self.hs),
                 Text("SUBJECTS",color=TX),
                 Stack(
                 controls=[
                     subjects,Row(
-                    height=10,
-                    width=5,
+                    height=10*self.hs,
+                    width=5*self.ws,
                     scroll='ALWAYS')
                 ]
                 )
@@ -177,8 +179,8 @@ class dashboard_class(ft.UserControl):
         dashboard_page = Row(alignment='end',
             controls=[
             Container(
-                width=400,
-                height=850,
+                width=self.W,
+                height=self.H,
                 bgcolor=FG,
                 border_radius=35,
                 animate=animation.Animation(600,AnimationCurve.DECELERATE),

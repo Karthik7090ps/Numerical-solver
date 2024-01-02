@@ -1,5 +1,6 @@
 from flet import*
 import flet as ft
+import pages.utility_page as screen_size
 
 class restore_class(ft.UserControl):
 
@@ -7,6 +8,7 @@ class restore_class(ft.UserControl):
         super().__init__()
         self.menu_page=page_menu
         self.restore(self)
+        self.ws,self.hs,self.W,self.H=screen_size.utility_class.screen_size(self)
 
     def restore(self,e):
         self.menu_page.controls[0].width = 400
