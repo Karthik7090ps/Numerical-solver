@@ -37,34 +37,34 @@ class dashboard_class(ft.UserControl):
         Page.padding=0
 
         subjects = Column(
-            height=400*self.ws,
-            scroll='auto',
+            height=340*self.ws,
+            scroll='always',
         )
-        electronics_subjects = [
-            "Analog Electronics",
-            "Digital Signal Processing",
-            "Control Systems",
-            "Microelectronics",
-            "Electronic Circuits",
-            "Communication Systems",
-            "VLSI Design",
-            "Embedded Systems",
-            "Electromagnetic Fields",
-            "Power Electronics"
-        ]
 
-        for subject in electronics_subjects:
-            subjects.controls.append(
-                Container(
-                    height=70*self.hs,
-                    width=400*self.ws,
-                    bgcolor=FWG,
-                    border_radius=25,
-                    padding=padding.only(left=20, top=25),
-                    content=Container(ElevatedButton(
-                        Text(value=subject,color=XT,text_align=TextAlign.CENTER,size=10*self.ws)
-                    ))
-                ),
+        def subjects_names():
+            electronics_subjects = [
+                "Analog Electronics",
+                "Digital Signal Processing",
+                "Control Systems",
+                "Microelectronics",
+                "Electronic Circuits",
+                "Communication Systems",
+                "VLSI Design",
+                "Embedded Systems",
+                "Electromagnetic Fields",
+                "Power Electronics"
+            ]
+            return electronics_subjects
+
+        for subject in subjects_names():
+            subjects.controls.append(Row(
+                controls=[
+                    Container(
+                        on_click=lambda _: self.page.go('/dashboard/subjects/subject'),
+                        content=
+                        ElevatedButton(height=70*self.hs,width=350*self.ws,text=subject,color=XT),)
+                    ]
+                )
             )
 
         categories_card = Row(
@@ -102,7 +102,7 @@ class dashboard_class(ft.UserControl):
             )
             )
 
-        avathar=profile_class(size=0.6)
+        avathar=profile_class(size=1)
 
         anchor = ft.SearchBar(
             height=45,
@@ -146,7 +146,7 @@ class dashboard_class(ft.UserControl):
                         Container(
                         on_click=lambda _: self.page.go('/dashboard/subjects'),
                         content=Icon(
-                        icons.NOTIFICATIONS,size=45*self.ws,color=FWG))
+                        icons.NOTIFICATIONS,size=45*self.hs,color=FWG))
                     ],
                     ),
                 ],
@@ -166,10 +166,7 @@ class dashboard_class(ft.UserControl):
                 Text("SUBJECTS",color=TX),
                 Stack(
                 controls=[
-                    subjects,Row(
-                    height=10*self.hs,
-                    width=5*self.ws,
-                    scroll='ALWAYS')
+                    subjects
                 ]
                 )
             ],
@@ -199,7 +196,7 @@ class dashboard_class(ft.UserControl):
         )
 
         final_page = menu_class(page_data_for_menu=dashboard_page)
-        
+
         return final_page
 
 # def main(page:ft.Page):

@@ -26,8 +26,8 @@ class profile_class(ft.UserControl):
     def __init__(self,size):
         super().__init__()
         self.circle=None
-        self.size=size
         self.ws,self.hs,self.W,self.H=screen_size.utility_class.screen_size(self)
+        self.size=size*self.hs
 
     def build(self):
         self.circle = Stack(

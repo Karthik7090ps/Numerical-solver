@@ -12,7 +12,6 @@ with open("/home/picchai/Documents/GItHub/Numerical-solver/toro/controls.json","
   config = json.load(control_file)
 
 def main(page: Page):
-
   pages_v = {
       '/':View(
                 "/",
@@ -26,12 +25,12 @@ def main(page: Page):
                 dashboard_class()
               ]
       ),
-      '/dashboard/subjects':View(
-        "/dashboard/subjects",
+      '/dashboard/subjects/subject':View(
+        "/dashboard/subjects/subject",
         [
           subjects_class()
         ]
-      )
+      ),
       # '/create_task': View(
       #               "/create_task",
       #               [
@@ -53,9 +52,22 @@ def main(page: Page):
 
 
 
+    # if page.route==f"/dashboard/subject/{subject}":
+    #   if subject in subjects.values():
+    #     page.update()
+    #     page.go("/subjects/subjects")
+
+  def view_pop(view):
+      page.views.pop()
+      top_view = page.views[-1]
+      page.go(top_view.route)
+      page.update()
+
 
   page.on_route_change = route_change
+  page.on_view_pop = view_pop
   page.go(page.route)
+
 
 
 
