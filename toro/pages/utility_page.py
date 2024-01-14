@@ -18,9 +18,9 @@ class utility_class (ft.UserControl):
             if i == 1:  # Assuming primary screen is the first in the list
                 width_scale=round(monitor.width/400,2)
                 height_scale=round(monitor.height/850,2)
-                print(f"Screen {i} - Width: {monitor.width}, Height: {monitor.height},height: {height_scale}, width: {width_scale}")
-                # return width_scale, height_scale, monitor.width, monitor.height
-                return 1,1,self.wed,self.het
+                # print(f"Screen {i} - Width: {monitor.width}, Height: {monitor.height},height: {height_scale}, width: {width_scale}")
+                return width_scale, height_scale, monitor.width, monitor.height
+                # return 1,1,self.wed,self.het
 
 # Creating an instance of the class
 # util = utility_class()

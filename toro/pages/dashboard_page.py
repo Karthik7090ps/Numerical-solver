@@ -102,7 +102,7 @@ class dashboard_class(ft.UserControl):
             )
             )
 
-        avathar=profile_class(size=1)
+        avathar=profile_class(size=0.6)
 
         anchor = ft.SearchBar(
             height=45,
@@ -140,7 +140,6 @@ class dashboard_class(ft.UserControl):
                             ]
                         ),
                     ),
-
                     Row(
                     controls=[
                         Container(
